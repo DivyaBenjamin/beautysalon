@@ -1,25 +1,41 @@
-import React from 'react'
+import React, { useState } from "react";
 import "./Addwork.css"
-const AddWork = () => {
+import axios from 'axios'
+function AddWork() {
+    const [caption, setCaption] = useState('')
+    const [image, setImage] = useState([])
+
+    const handleImageChange = (e) => {
+        const img = e.target.files[0];
+        setImage(img)
+       
+      };
+    const AddGalary = () => {
+        const frm = new FormData();
+        frm.append("caption",caption);
+        frm.append("image",image); 
+
+        axios.post('http://127.0.0.1:8000/adminboutique/workserializer/',frm).then((response) => {
+            console.log(response.data);
+        })
+    }
   return (
     <div>
     <div className='Container'>
         <h1 className='Form-title'>Work Gallery</h1>
-        <form action="#" method='post' encType='multipart/form-data'>
             <div className='Main-user-info'>
                 <div className='User-input-box'>
                     <label htmlFor="Rate">Caption</label>
-                    <input type="text" id='caption' name='caption' placeholder='Enter rate'/>
+                    <input type="text" id='caption' name='caption' placeholder='Enter rate' onChange={(event) => setCaption(event.target.value)}/>
                 </div>
                 <div className='User-input-box'>
                     <label htmlFor="image">Image</label>
-                    <input type="file" id="image" name='image' placeholder='Upload proof'/>
+                    <input type="file" id="image" name='image' placeholder='Upload proof' onChange={handleImageChange}/>
                 </div>
                 <div className='form-submit-btn'>
-                    <input type="submit" value="Register" />
+                    <input type="submit" value="Register" onClick={AddGalary}/>
                 </div>
             </div>
-        </form>
     </div>
     <table class="Content-table">
     <tr>

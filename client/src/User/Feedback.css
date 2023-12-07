@@ -18,7 +18,7 @@
     margin-bottom: 7px;
 }
 .Field{
-    margin-bottom: 30px;
+    margin-bottom: 26px;
 }
 .Field label{
     font-size: 15px;
@@ -28,7 +28,7 @@
 }
 input{
     width: 100%;
-    padding: 15px 25px;
+    padding: 15px 15px;
     border: 0;
     background:#f0f0f0;
     border-radius: 5px;

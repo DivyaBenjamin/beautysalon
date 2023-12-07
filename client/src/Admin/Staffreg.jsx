@@ -1,8 +1,39 @@
-import React from 'react'
+import React, { useState } from "react";
 import "./Staff.css"
+import axios from 'axios'
 function Staffreg() {
 
-    
+  const [fullname, setFullname] = useState('')
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [phonenumber, setPhonenumber] = useState('')
+  const [img, setImg] = useState('')
+  const [proof, setProof] = useState('') 
+  const [password, setPassword] = useState('')
+  const [gender, setGender] = useState('') 
+  const [dateofjoining, setDateofjoining] = useState('')
+
+  const handleImageChange = (e) => {
+        const img = e.target.files[0];
+        setImg(img)
+       
+      };
+  const AddStaff = () => {
+    const frm = new FormData();
+    frm.append("name",fullname);
+    frm.append("username",username);
+    frm.append("email",email);
+    frm.append("phonenumber",phonenumber);
+    frm.append("image",img);
+    frm.append("proof",proof);
+    frm.append("password",password);
+    frm.append("gender",gender);
+    frm.append("doj",dateofjoining);
+
+      axios.post('http://127.0.0.1:8000/adminboutique/workserializer/',frm).then((response) => {
+          console.log(response.data);
+      })
+  }
   return (
     <div>
         <div className="Container">
@@ -13,50 +44,50 @@ function Staffreg() {
               <label for="FullName">Full Name</label>
               <input type="text"
                       id="fullName"
-                      name="fullName"
-                      placeholder="Enter Full Name" value="{{data.name}}"/>
+                      name="fullname"
+                      placeholder="Enter Full Name" onChange={(event) => setFullname(event.target.value)}/>
             </div>
             <div className="User-input-box">
               <label for="Username">Username</label>
               <input type="text"
                       id="username"
                       name="username"
-                      placeholder="Enter Username" value="{{data.username}}"/>
+                      placeholder="Enter Username" onChange={(event) => setUsername(event.target.value)}/>
             </div>
             <div className="User-input-box">
               <label for="Email">Email</label>
               <input type="email"
                       id="email"
                       name="email"
-                      placeholder="Enter Email" value="{{data.email}}"/>
+                      placeholder="Enter Email" onChange={(event) => setEmail(event.target.value)}/>
             </div>
             <div className="User-input-box">
               <label for="PhoneNumber">Phone Number</label>
               <input type="text"
                       id="phoneNumber"
-                      name="phoneNumber"
-                      placeholder="Enter Phone Number" value="{{data.phone}}"/>
+                      name="phonenumber"
+                      placeholder="Enter Phone Number" onChange={(event) => setPhonenumber(event.target.value)}/>
             </div>
             <div className="User-input-box">
                 <label for="PhoneNumber">Image</label>
                 <input type="file"
                         id="img"
                         name="img"
-                        placeholder="Upload Photo" value="{{data.image}}"/>
+                        placeholder="Upload Photo" onChange={(event) => setImg(event.target.value)}/>
               </div>
               <div className="User-input-box">
                 <label for="PhoneNumber">Proof</label>
                 <input type="file"
                         id="proof"
                         name="proof"
-                        placeholder="Upload Proof" value="{{data.proof}}"/>
+                        placeholder="Upload Proof" onChange={(event) => setProof(event.target.value)}/>
               </div>
             <div className="User-input-box">
               <label for="Password">Password</label>
               <input type="password"
                       id="password"
                       name="password"
-                      placeholder="Enter Password" value="{{data.password}}"/>
+                      placeholder="Enter Password" onChange={(event) => setPassword(event.target.value)}/>
             </div>
             <div className="User-input-box">
               <label for="ConfirmPassword">Confirm Password</label>
@@ -68,11 +99,11 @@ function Staffreg() {
             <div className="Gender-details-box">
                 <span className="Gender-title">Gender</span>
                 <div className="Gender-category">
-                  <input type="radio" name="gender" id="male"/>
+                  <input type="radio" name="gender" id="male" onChange={(event) => setGender(event.target.value)}/>
                   <label for="Male">Male</label>
-                  <input type="radio" name="gender" id="female"/>
+                  <input type="radio" name="gender" id="female" onChange={(event) => setGender(event.target.value)}/>
                   <label for="Female">Female</label>
-                  <input type="radio" name="gender" id="other"/>
+                  <input type="radio" name="gender" id="other" onChange={(event) => setGender(event.target.value)}/>
                   <label for="Other">Other</label>
                 </div>
             </div>
@@ -81,11 +112,11 @@ function Staffreg() {
                     <input type="date"
                             id="doj"
                             name="dateofjoining"
-                            placeholder="Enter Joining date" value="{{data.doj}}"/>
+                            placeholder="Enter Joining date" onChange={(event) => setDateofjoining(event.target.value)}/>
                 </div>
           </div>
           <div className="Form-submit-btn">
-            <input type="submit" value="Register"/>
+            <input type="submit" value="Register" onClick={AddStaff}/>
           </div>
         </form>
     </div>

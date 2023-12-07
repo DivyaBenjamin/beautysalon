@@ -51,6 +51,7 @@ def userserializer(request):
         return JsonResponse(serializer.data,safe=False)
     if request.method=="POST":
         serializer=Userserializer(data=request.data)
+        print(serializer)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data,status=status.HTTP_201_CREATED)

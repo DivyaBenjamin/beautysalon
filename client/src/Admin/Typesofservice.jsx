@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Addwork.css";
+import "./Staff.css";
 import axios from 'axios'
 function Typesofservice() {
 

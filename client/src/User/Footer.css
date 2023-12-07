@@ -1,0 +1,64 @@
+/* footer */
+.footer{
+	background: #8a6d46;
+	text-align: center;
+}
+.footer .box-container{
+	display: grid;
+	grid-template-columns: repeat(auto-fit,minmax(30rem, 1fr));
+	gap: 2rem;
+}
+.footer .box-container .box h3{
+	font-size: 2.2rem;
+	text-transform: capitalize;
+	color: #d7c7ae;
+	padding: 1rem 0;
+}
+.footer .box-container .box p{
+	font-size: 1.5rem;
+	line-height: 2;
+	color: #000;
+	padding: 1rem 0;
+}
+.footer .box-container .box .share{
+	margin-top: 1rem;
+}
+.footer .box-container .box .share a{
+	height: 4.5rem;
+	width: 4.5rem;
+	line-height: 4.5rem;
+	border-radius: 50%;
+	font-size: 1.7rem;
+	background-color: #d7c7ae;
+	color: #000;
+	margin-right: .3rem;
+	text-align: center;
+}
+.footer .box-container .box .share a:hover{
+	background: #726e6e;
+}
+.footer .box-container .box .link{
+	font-size: 1.7rem;
+	line-height: 2;
+	color: #d7c7ae;
+	padding: .5rem 0;
+	display: block;
+	text-decoration: underline;
+}
+.footer .box-container .box .link:hover{
+	color: #000;
+	text-decoration: underline;
+}
+.footer .credict{
+	text-align: center;
+	margin-top: 3rem;
+	padding-top: 3rem;
+	font-size: 2rem;
+	text-transform: capitalize;
+	color: #444;
+	border-top: 0.1rem solid #aaa;
+}
+.footer .credict span{
+	color: #aaa;
+}
+/* footer */

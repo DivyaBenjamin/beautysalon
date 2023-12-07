@@ -141,12 +141,19 @@ def logout(request):
     del request.session['uid']
     return redirect('webguest:login')
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def blogupserializer(request):
-    if request.method=='GET':
-        blogdata=tbl_blogs.objects.all()
-        serializer=Blogserializer(blogdata,many=True)
-        return JsonResponse(serializer.data,safe=False)
+    if request.method == 'GET':
+        blogdata = tbl_blogs.objects.all()
+        serializer = Blogserializer(blogdata, many=True)
+        return JsonResponse(serializer.data, safe=False)
+    
+    if request.method == 'POST':
+        serializer = Blogserializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET','PUT'])
 def blogserializer(request,qid):
